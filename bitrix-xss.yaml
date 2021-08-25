@@ -9,15 +9,22 @@ info:
 requests:
   - method: GET
     path:
-      - "{{BaseURL}}/bitrix/help/en/index.html?page=javascript:alert(document.domain)//"
+      - "{{BaseURL}}/bitrix/help/en/index.html?page=javascript:alert('{{randstr}}')"
 
-    matchers-condition: and
+matchers-condition: and
     matchers:
       - type: word
-        words:
-          - "javascript:alert(document.domain)"
         part: body
+        words:
+          - '{{randstr}}'
+          - '<form action="javascript:alert'
+        condition: and
 
       - type: status
         status:
           - 200
+
+      - type: word
+        part: header
+        words:
+          - "text/html"
