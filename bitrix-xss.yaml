@@ -11,7 +11,7 @@ requests:
     path:
       - "{{BaseURL}}/bitrix/help/en/index.html?page=javascript:alert('{{randstr}}')"
 
-matchers-condition: and
+    matchers-condition: and
     matchers:
       - type: word
         part: body
