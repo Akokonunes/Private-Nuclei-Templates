@@ -1,7 +1,7 @@
-id: uptimerobot-takeover
+id: flexbe-takeoverr
 
 info:
-  name: uptimerobot takeover detection
+  name: flexbe takeover
   author: pdteam
   severity: low
   tags: takeover
@@ -16,9 +16,9 @@ requests:
 
     matchers-condition: and
     matchers:
-      - type: regex
-        regex:
-          - "^Domain isn't configured$"
+      - type: word
+        words:
+          - Domain isn't configured
 
       - type: status
         status:
