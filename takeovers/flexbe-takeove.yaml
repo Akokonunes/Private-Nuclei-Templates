@@ -1,0 +1,19 @@
+id: flexbe-takeover
+
+info:
+  name: Flexbe Subdomain Takeover
+  author: 0x_Akoko
+  severity: high
+  tags: takeover
+  reference: https://smaranchand.com.np/2021/06/flywheel-subdomain-takeover
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    matchers:
+      - type: word
+        words:
+          - "This domain isn't connected to any account on the Flexbe platform"
+          - "<h1>Domain isn't configured</h1>"
+        condition: and
