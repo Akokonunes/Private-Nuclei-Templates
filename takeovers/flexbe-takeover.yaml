@@ -1,19 +1,25 @@
-id: flexbe-takeover
+id: uptimerobot-takeover
 
 info:
-  name: Flexbe Subdomain Takeover
-  author: 0x_Akoko
-  severity: high
+  name: uptimerobot takeover detection
+  author: pdteam
+  severity: low
   tags: takeover
-  reference: https://smaranchand.com.np/2021/06/flywheel-subdomain-takeover
+  reference:
+    - https://exploit.linuxsec.org/uptimerobot-com-custom-domain-subdomain-takeover/
+    - https://github.com/EdOverflow/can-i-take-over-xyz/issues/45
 
 requests:
   - method: GET
     path:
       - "{{BaseURL}}"
+
+    matchers-condition: and
     matchers:
-      - type: word
-        words:
-          - "<h1>Domain isn't configured</h1>"
-          - "This domain isn't connected to any account on the Flexbe platform"
-        condition: and
+      - type: regex
+        regex:
+          - "^Domain isn't configured$"
+
+      - type: status
+        status:
+          - 404
