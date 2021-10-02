@@ -7,8 +7,7 @@ info:
   tags: takeover
   reference:
     - https://github.com/EdOverflow/can-i-take-over-xyz/issues/237
-    - https://github.com/EdOverflow/can-i-take-over-xyz/issues/45
-
+    
 requests:
   - method: GET
     path:
