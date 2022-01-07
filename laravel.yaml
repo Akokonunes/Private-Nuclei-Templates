@@ -22,7 +22,7 @@ requests:
       - type: word
         part: body
         words:
-		      - "('{{randstr}}')"
+	  - "('{{randstr}}')"
           - "--><svg onload=alert"
 
       - type: word
