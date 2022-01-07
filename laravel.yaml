@@ -18,8 +18,7 @@ requests:
       - type: word
         part: body
         words:
-          - '{{randstr}}'
-          - '<svg onload=alert'
+          - '<svg onload=alert({{randstr}})'
         condition: and
 
       - type: status
