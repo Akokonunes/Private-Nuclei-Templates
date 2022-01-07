@@ -15,15 +15,16 @@ requests:
 
     matchers-condition: and
     matchers:
-      - type: status
-        status:
-          - 200
-
       - type: word
         part: body
         words:
-	  - "('{{randstr}}')"
-          - "--><svg onload=alert"
+          - '{{randstr}}'
+          - '<svg onload=alert'
+        condition: and
+
+      - type: status
+        status:
+          - 200
 
       - type: word
         part: header
