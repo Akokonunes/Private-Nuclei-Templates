@@ -33,4 +33,4 @@ requests:
 
       - type: regex
         regex:
-          - "^/app/template/Index\.vm\?login=true$"
+          - "/app/template/Index\.vm\?login=true"
