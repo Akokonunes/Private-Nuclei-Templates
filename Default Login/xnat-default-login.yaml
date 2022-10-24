@@ -21,7 +21,7 @@ requests:
         Host: {{Hostname}}
         Origin: {{BaseURL}}
         Content-Type: application/x-www-form-urlencoded
-        Referer: {{BaseURL}}/admin/airflow/login
+        Referer: {{BaseURL}}/app/template/Login.vm
         
         login_method=localdb&username={{username}}&password={{password}}&login=&XNAT_CSRF={{csrf_token}}
         
