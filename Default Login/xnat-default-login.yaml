@@ -12,10 +12,18 @@ info:
 requests:
   - raw:
       - |
-        POST /login HTTP/1.1
+        GET /login/ HTTP/1.1
         Host: {{Hostname}}
+        Origin: {{BaseURL}}
         
-        login_method=localdb&username={{username}}&password={{password}}&login=&XNAT_CSRF=
+      - |
+        POST /login/ HTTP/1.1
+        Host: {{Hostname}}
+        Origin: {{BaseURL}}
+        Content-Type: application/x-www-form-urlencoded
+        Referer: {{BaseURL}}/admin/airflow/login
+        
+        login_method=localdb&username={{username}}&password={{password}}&login=&XNAT_CSRF={{csrf_token}}
         
     payloads:
       username:
