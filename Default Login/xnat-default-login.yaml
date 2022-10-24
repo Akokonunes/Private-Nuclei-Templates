@@ -31,6 +31,9 @@ requests:
         status:
           - 302
 
+    extractors:
       - type: regex
+        part: location
+        group: 1
         regex:
-          - "/app/template/Index\.vm\?login=true"
+          - "^template$"
