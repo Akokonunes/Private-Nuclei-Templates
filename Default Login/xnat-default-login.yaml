@@ -12,36 +12,34 @@ info:
 requests:
   - raw:
       - |
-        GET /login/ HTTP/1.1
+        GET /login HTTP/1.1
         Host: {{Hostname}}
         Origin: {{BaseURL}}
-        
+
       - |
-        POST /login/ HTTP/1.1
+        POST /login HTTP/1.1
         Host: {{Hostname}}
         Origin: {{BaseURL}}
         Content-Type: application/x-www-form-urlencoded
         Referer: {{BaseURL}}/app/template/Login.vm
-        
-        login_method=localdb&username={{username}}&password={{password}}&login=&XNAT_CSRF={{csrf_token}}
-        
+
+        login_method=localdb&username={{username}}&password={{password}}&login=&XNAT_CSRF=
+
+    cookie-reuse: true
+    attack: pitchfork
     payloads:
       username:
         - admin
       password:
         - admin
-    attack: pitchfork
 
     matchers-condition: and
     matchers:
-
       - type: status
         status:
           - 302
 
-    extractors:
-      - type: regex
+      - type: word
         part: location
-        group: 1
-        regex:
-          - "^template$"
+        words:
+          - "app/template/Index.vm?login=true"
