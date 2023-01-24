@@ -1,0 +1,21 @@
+id: webalizer-script-logs
+
+info:
+  name: Webalizer Script Logs
+  author: 0x_Akoko
+  severity: low
+  tags: webalizer,logs
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}/stats/index.html'
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - '<title>Usage Statistics for</title>'
+      - type: status
+        status:
+          - 200
