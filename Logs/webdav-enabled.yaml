@@ -11,14 +11,19 @@ info:
 requests:
   - method: OPTIONS
     path:
-      - '{{BaseURL}}/'
+      - "{{BaseURL}}/"
+
 
     matchers-condition: and
     matchers:
       - type: word
         part: header
         words:
-          - 'MS-Author-Via: DAV'
+          - "MS-Author-Via: DAV"
+      - type: word
+        part: header
+        words:
+          - "DAV'"
       - type: status
         status:
           - 200
